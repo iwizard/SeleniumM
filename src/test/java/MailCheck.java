@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -37,6 +39,10 @@ public class MailCheck {
 		webDriver.findElement(By.xpath("//input[@id='signIn']")).click();
 		
 		Thread.sleep(10000);
+		
+		List<WebElement> list = webDriver.findElements(By.xpath("//*[contains(text(),'" + "test mail" + "')]"));
+		Assert.assertTrue(list.size() > 0, "No such mail!");
+
 
 		
 	
